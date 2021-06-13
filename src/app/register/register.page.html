@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Registro de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="registerForm" (ngSubmit)="signupUser($event)">
+    <h1> Registrar usuario por email</h1>
+    <ion-item>
+     <ion-input formControlName="email" type="email" aria-placeholder="email"
+      required> </ion-input>  
+     </ion-item>
+    <ion-chip color="danger" *ngIf="emailField.errors && emailField.dirty  " >
+    <ion-label *ngIf="emailField.hasError('email') "> El email es invalido</ion-label>
+    <ion-label *ngIf="emailField.hasError('required')"> El email es requerido
+     </ion-label>   
+    </ion-chip> 
+     <ion-item>
+       <ion-input formControlName="password" type="password" 
+       aria-placeholder="contraseña" minlength=6> </ion-input>  
+     </ion-item>
+     <ion-chip color="danger" *ngIf="passField.errors && passField.dirty  " >
+       <ion-label *ngIf="passField.hasError('minlength')">
+          debe tener un minimo de 6 caracteres la contraseña</ion-label>
+       <ion-label *ngIf="passField.hasError('required')"> 
+         la contraseña es requerida </ion-label>   
+       </ion-chip>
+    <ion-button type="submit" expand="block"> Registrarse</ion-button>
+   <p> ya estas registrado? <a routerLink="../login/"> Ingresa</a></p>
+   
+   </form>
+</ion-content>
